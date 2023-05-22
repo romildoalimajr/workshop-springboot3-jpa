@@ -3,29 +3,40 @@ package net.kalangos.course.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_user")
 public class User implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String email;
 	private String phone;
-	private String passwword;
+	private String password;
 	
 	public User() {
 		
 	}
 
-	public User(Long id, String name, String email, String phone, String passwword) {
+	public User(Long id, String name, String email, String phone, String password) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
-		this.passwword = passwword;
+		this.password = password;
 	}
 
 	public Long getId() {
@@ -60,12 +71,12 @@ public class User implements Serializable{
 		this.phone = phone;
 	}
 
-	public String getPasswword() {
-		return passwword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPasswword(String passwword) {
-		this.passwword = passwword;
+	public void setPasswword(String password) {
+		this.password = password;
 	}
 
 	@Override
