@@ -1,4 +1,4 @@
-package net.kalangos.course.resource;
+package net.kalangos.course.resources;
 
 import java.util.List;
 
