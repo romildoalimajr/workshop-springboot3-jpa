@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
 import net.kalangos.course.entities.User;
 import net.kalangos.course.repositories.UserRepository;
 import net.kalangos.course.services.exceptions.DatabaseException;
@@ -46,9 +47,14 @@ public class UserService {
 	}
 
 	public User update(Long id, User obj) {
+		try {
 		User entity = repository.getReferenceById(id);
 		updateData(entity, obj);
 		return repository.save(entity);
+		} catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+			
+		}
 	}
 
 	public void updateData(User entity, User obj) {
